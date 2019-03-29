@@ -42,6 +42,12 @@ public class VendingMachine {
 				System.out.println("You must put in 1 dollar or greater");
 			} else {
 				VendingMachine.ReturnMoney(0);
+<<<<<<< HEAD
+				}
+
+				System.out.println("Enter the number for the candy you would like to purchase");
+		
+=======
 			}
 			System.out.println("Enter the number for the candy you would like to purchase");
 			/*while(true)
@@ -66,6 +72,7 @@ public class VendingMachine {
 				break;
 			}*/
 			
+>>>>>>> ed41d711b43374bdc833d870ccbc7cdca7f61c94
 
 				String num = scan.next();
 				if(num.equals("1")||num.equals("2")||num.equals("3"))
@@ -74,15 +81,19 @@ public class VendingMachine {
 					Candy candy = VendingMachine.VendItem((num));
 					if(candy.getPrice() > amountIn)
 					{
-						System.out.println("You must put in money greater than what you are buying");
-						break;
+						System.out.println("You must put in money greater than what you are buying, enter a new amount");
+						
+						
 					}
 					else
 					{
 						System.out.println("Here is your " + candy.getName());
 						VendingMachine.ReturnMoney(candy.getPrice());
+					
 
 					}
+					System.out.println("Here is your " + candy.getName());
+
 				}
 
 			
@@ -93,61 +104,4 @@ public class VendingMachine {
 	}
 }
 
-// {
-// System.out.println(VendingMachine.GetMachineInfo());
-// System.out.println(VendingMachine.DisplayContents());
-// System.out.println("Pick a vending machine item or hit Q to quit");
-// Scanner scan = new Scanner(System.in);
-// int input = scan.nextInt();
-//
-//
-//
-//
-//
-// if(input == 1)
-// {
-// System.out.println("continue with the vending machine");
-//
-// System.out.println("You picked a twix bar, enter funds to purchase item");
-// System.out.println(VendingMachine.GetMachineInfo());
-// System.out.println(VendingMachine.DisplayContents());
-// double input2 = scan.nextDouble();
-// VendingMachine.TakeMoney(input2);
-// VendingMachine.vend(1);
-// VendingMachine.ReturnMoney(input2);
-//
-//
-// }
-//
-// if(input == 2)
-// {
-// System.out.println("continue with the vending machine");
-//
-// System.out.println("you picked skittles, enter funds to purchase item");
-// System.out.println(VendingMachine.GetMachineInfo());
-// System.out.println(VendingMachine.DisplayContents());
-// double input3 = scan.nextDouble();
-// VendingMachine.TakeMoney(input3);
-// VendingMachine.vend(2);
-// VendingMachine.ReturnMoney(input3);
-//
-////
-//
-// }
-// if(input == 3)
-// {
-// System.out.println("continue with the vending machine");
-//
-// System.out.println("you picked gum, enter funds to purchase item");
-// System.out.println(VendingMachine.GetMachineInfo());
-// System.out.println(VendingMachine.DisplayContents());
-// double input4 = scan.nextDouble();
-// VendingMachine.TakeMoney(input4);
-// VendingMachine.vend(3);
-// VendingMachine.ReturnMoney(input4);
-//
-//
-//
-// }
-//
-//
+

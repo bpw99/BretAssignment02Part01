@@ -47,6 +47,26 @@ public class Backups
 //	}
 //	while(bool == false);
 //	}
+//		/*while(true)
+//	{
+//		if (!scan.hasNextInt()) {
+//			String a = scan.next();
+//			if (a.equalsIgnoreCase("q")) {
+//				quit = true;
+//				break;
+//			
 //
+//		}else {
+//				System.out.println("Invalid input");
+//			}
+//
+//		} else {
+//			break;
+//		}
+//
+//	}
+//	if (quit = true) {
+//		break;
+//	}*/
 
 }

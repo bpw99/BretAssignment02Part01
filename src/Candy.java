@@ -1,6 +1,4 @@
-
-public class Candy implements ICandyVendingMachine, Cloneable 
-{
+public class Candy implements ICandyVendingMachine, Cloneable {
 	
 	String name;
 	double price;
@@ -21,14 +19,10 @@ public class Candy implements ICandyVendingMachine, Cloneable
 	}
 
 	
+	// Constructor
+	public Candy() {}
 	
-	public Candy()
-	{
-		
-	}
-	
-	public Candy(String n, double p)
-	{
+	public Candy(String n, double p) {
 		price = p;
 		name = n;
 	}

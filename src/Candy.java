@@ -1,5 +1,5 @@
 public class Candy implements ICandyVendingMachine, Cloneable {
-	
+
 	String name;
 	double price;
 	public double getPrice() {
@@ -40,7 +40,7 @@ public class Candy implements ICandyVendingMachine, Cloneable {
 	}
 
 	@Override
-	public Object VendItem(String slotCode) {
+	public Candy VendItem(String slotCode) {
 		
 		return null;
 	}

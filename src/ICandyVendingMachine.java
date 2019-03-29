@@ -1,4 +1,4 @@
-public interface ICandyVendingMachine<Candy> {	
+public interface ICandyVendingMachine {	
 		 // Accepts the amount of money from the user
 		 void TakeMoney(double amount);
 		 // Returns the amount of money to the user

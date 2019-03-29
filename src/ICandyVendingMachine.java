@@ -1,8 +1,4 @@
-
-public interface ICandyVendingMachine<Candy>
-{
-	
-	
+public interface ICandyVendingMachine<Candy> {	
 		 // Accepts the amount of money from the user
 		 void TakeMoney(double amount);
 		 // Returns the amount of money to the user
@@ -15,7 +11,4 @@ public interface ICandyVendingMachine<Candy>
 		 String GetMachineInfo();
 		 // Shows the item name and price for each Slot of the machine
 		 String DisplayContents();
-	
-	
-
 }

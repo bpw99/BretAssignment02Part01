@@ -1,64 +1,49 @@
 import java.util.Scanner;
 
 public class VendingMachine {
-	
-	
-	
-	
-	
 	public static void main(String[] args) {
 		
 		Candy twix = new Candy("Twix", 1.00);
 		Candy skittles = new Candy("Skittles", 1.20);
 		Candy largeGumball = new Candy("Gum", 1.00);
-		
 
 		CandyVM VendingMachine = new CandyVM(twix, 3, skittles, 2, largeGumball, 3);
 		Scanner scan = new Scanner(System.in);
 
 		boolean quit = false;
-		while (true) {
-			
-			
-			
+		while (true) {	
+
 			System.out.println(VendingMachine.DisplayContents());
 			System.out.println("Enter money or Q to quit");
-			
-			while (true) {
 
+			while (true) {
 				if (!scan.hasNextDouble()) {
 					String a = scan.next();
 					if (a.equalsIgnoreCase("q")) {
 						quit = true;
 						break;
-					
 
-					}else {
+					} else {
 						System.out.println("Invalid input");
 					}
-
 				} else {
 					break;
 				}
 			}
-				if (quit == true) {
-					break;
-				}
+			if (quit == true) {
+				break;
+			}
 
-				double amountIn = scan.nextDouble();
+			double amountIn = scan.nextDouble();
 
-				VendingMachine.TakeMoney(amountIn);
-				double money = VendingMachine.getMoney();
-				if(money < 1)
-				{
-					System.out.println("You must put in 1 dollar or greater");
-				}
-				else
-				{
+			VendingMachine.TakeMoney(amountIn);
+			double money = VendingMachine.getMoney();
+			if(money < 1) {
+				System.out.println("You must put in 1 dollar or greater");
+			} else {
 				VendingMachine.ReturnMoney(0);
-				}
-
-				System.out.println("Enter the number for the candy you would like to purchase");
+			}
+			System.out.println("Enter the number for the candy you would like to purchase");
 			/*while(true)
 			{
 				if (!scan.hasNextInt()) {

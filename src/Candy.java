@@ -1,23 +1,12 @@
 public class Candy implements ICandyVendingMachine, Cloneable {
 
-	String name;
-	double price;
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
+	private double price;
+	public double getPrice() { return(price); }
+	public void setPrice(double price) { this.price = price; }
+	
+	private String name;
+	public String getName() { return(name); }
+	public void setName(String name) { this.name = name; }
 	
 	// Constructor
 	public Candy() {}
@@ -26,40 +15,19 @@ public class Candy implements ICandyVendingMachine, Cloneable {
 		price = p;
 		name = n;
 	}
+	// -----
 
-	@Override
-	public void TakeMoney(double amount) 
-	{
-		
-	}
+	public void TakeMoney(double amount) { }
 
-	@Override
-	public void ReturnMoney(double amount) 
-	{
-		
-	}
+	public void ReturnMoney(double amount) { }
 
-	@Override
-	public Candy VendItem(String slotCode) {
-		
-		return null;
-	}
+	public Candy VendItem(String slotCode) { return(null); }
 
-	@Override
-	public String GetMachineInfo() {
-		
-		return null;
-	}
+	public String GetMachineInfo() { return(null); }
 
-	@Override
-	public String DisplayContents() {
-		
-		return null;
-	}
+	public String DisplayContents() { return(null); }
 	
-	public Candy clone()
-	{
+	public Candy clone() {
 		return new Candy(this.name,this.price);
 	}
-
 }

@@ -1,47 +1,32 @@
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class CandyVM implements ICandyVendingMachine
-{
+public class CandyVM implements ICandyVendingMachine {
 	Queue<Candy> slot1 = new LinkedList<Candy>();
 	Queue<Candy> slot2 = new LinkedList<Candy>();
 	Queue<Candy> slot3 = new LinkedList<Candy>();
 	
 	double money = 0;
 	
+	public CandyVM() { }
 	
-	public CandyVM()
-	{
-		
-		
-		
-	}
-	
-	public CandyVM(Candy a, int b, Candy c, int d, Candy e, int f)
-	{
-		for(;b>0;b--)
-		{
+	public CandyVM(Candy a, int b, Candy c, int d, Candy e, int f) {
+		for(; b > 0; b -= 1) {
 			slot1.add(a.clone());
 		}
-		for(;d>0;d--)
-		{
+		for(;d > 0; d -= 1) {
 			slot2.add(c.clone());
 		}
-		for(;f>0;f--)
-		{
+		for(;f > 0; f -= 1) {
 			slot3.add(e.clone());
 		}
 	}
 	
-	
-	
 	@Override
 	public void TakeMoney(double amount) {
-		money += amount;
-		
+		money += amount;	
 	}
-	public double getMoney()
-	{
+	public double getMoney() {
 		return money;
 	}
 	@Override
@@ -50,20 +35,16 @@ public class CandyVM implements ICandyVendingMachine
 	}
 	@Override
 	public Candy VendItem(String slotCode) {
-		if(slotCode.equals("1"))
-		{
+		if(slotCode.equals("1")) {
 			return slot1.poll();
 		}
-		else if(slotCode.equals("2"))
-		{
+		else if(slotCode.equals("2")) {
 			return slot2.poll();
 		}
-		else if(slotCode.equals("3"))
-		{
+		else if(slotCode.equals("3")) {
 			return slot3.poll();
 		}
-		else
-		{
+		else {
 			return null;
 		}
 	}
@@ -74,64 +55,46 @@ public class CandyVM implements ICandyVendingMachine
 	@Override
 	public String DisplayContents() {
 		String out = "";
-		out += "Slot (1): " + slot1.peek().getName() + " - " + "$" + slot1.peek().getPrice() +  " (" +slot1.size() +")"+ "\n";
-		 out += "Slot (2): " + slot2.peek().getName() + " - " + "$" + slot2.peek().getPrice() + " ("+ slot2.size() +")"+ "\n";
-		 out += "Slot (3): " + slot3.peek().getName() + " - " + "$" + slot3.peek().getPrice() + " (" + slot3.size() + ")";
-		 
-		 return out;
+		out += "Slot (1): " + slot1.peek().getName() + " - " + "$" + slot1.peek().getPrice() + " (" + slot1.size() + ")"+ "\n";
+		out += "Slot (2): " + slot2.peek().getName() + " - " + "$" + slot2.peek().getPrice() + " (" + slot2.size() + ")"+ "\n";
+		out += "Slot (3): " + slot3.peek().getName() + " - " + "$" + slot3.peek().getPrice() + " (" + slot3.size() + ")";
+		return out;
 	}
 	
-	
-	
-	public Candy vend(int slotCode)
-	{
-		switch (slotCode)
-		{
+	public Candy vend(int slotCode) {
+		switch (slotCode) {
 		case 1:
-			if(money >= slot1.peek().getPrice())
-			{
+			if(money >= slot1.peek().getPrice()) {
 				money -= slot1.peek().getPrice();
 				return slot1.poll();
 			}
-			else
-			{
+			else {
 				System.out.println("ERROR NOT ENOUGH MONEY");
 			}
 			break;
-			
+		
 		case 2:
-			if(money >= slot2.peek().getPrice())
-			{
+			if(money >= slot2.peek().getPrice()) {
 				money -= slot2.peek().getPrice();
 				return slot2.poll();
 			}
-			else
-			{
+			else {
 				System.out.println("ERROR NOT ENOUGH MONEY");
-				
 			}
 			break;
 		case 3:
-			if(money >= slot3.peek().getPrice())
-			{
+			if(money >= slot3.peek().getPrice()) {
 				money -= slot3.peek().getPrice();
 				return slot3.poll();
 			}
-			else
-			{
+			else {
 				System.out.println("ERROR NOT ENOUGH MONEY");
 			}
 			break;
 		default:
 			System.out.println("That ain't an option chief");
-			break;
-			
+			break;			
 		}
 		return null;
 	}
-
-	
-	
-	
-
 }

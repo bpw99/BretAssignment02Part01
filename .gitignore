@@ -1,5 +1,7 @@
 bin/
+backup/
+
+# Eclipse Files
 .settings/
 .project
 .classpath
-backup/

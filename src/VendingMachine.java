@@ -16,14 +16,18 @@ public class VendingMachine {
 
 		CandyVM VendingMachine = new CandyVM(twix, 3, skittles, 2, largeGumball, 3);
 		Scanner scan = new Scanner(System.in);
-
+		System.out.println(VendingMachine.DisplayContents());
+		System.out.println("Enter money or Q to quit");
+		
 		boolean quit = false;
 		while (true) {
 			
 			
-			
+			if(VendingMachine.getMoney() <= 1)
+			{
 			System.out.println(VendingMachine.DisplayContents());
 			System.out.println("Enter money or Q to quit");
+			}
 			
 			while (true) {
 

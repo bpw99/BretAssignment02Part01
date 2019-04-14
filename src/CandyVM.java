@@ -5,12 +5,12 @@ public class CandyVM implements ICandyVendingMachine {
 	Queue<Candy> slot1 = new LinkedList<Candy>();
 	Queue<Candy> slot2 = new LinkedList<Candy>();
 	Queue<Candy> slot3 = new LinkedList<Candy>();
-	
+
 	private	double money = 0;
 
 	// Constructor
 	public CandyVM() { }
-	
+
 	public CandyVM(Candy a, int b, Candy c, int d, Candy e, int f) {
 		for (; b > 0; b -= 1) {
 			slot1.add(a.clone());
@@ -31,7 +31,7 @@ public class CandyVM implements ICandyVendingMachine {
 	public double getMoney() { return(money); }
 
 	public void ReturnMoney(double amount) {
-		System.out.println("Here is the money you have left $" + (money-amount) +"\n");
+		System.out.println("Here is the money you have left $" + (money - amount) +"\n");
 	}
 
 	public Candy VendItem(String slotCode) {

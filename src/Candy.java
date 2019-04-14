@@ -17,6 +17,7 @@ public class Candy implements ICandyVendingMachine, Cloneable {
 	}
 	// -----
 
+	// Instance 
 	public void TakeMoney(double amount) { }
 
 	public void ReturnMoney(double amount) { }

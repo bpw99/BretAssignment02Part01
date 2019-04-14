@@ -5,3 +5,6 @@ backup/
 .settings/
 .project
 .classpath
+
+# Java Files
+*.class

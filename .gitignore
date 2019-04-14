@@ -1,6 +1,33 @@
-bin/
-.settings/
-.project
-.classpath
+# Java
 *.class
-backup/
+*.jar
+*.war
+*.ear
+*.log
+## Generated Docs
+doc*/
+
+## BlueJ files
+*.ctxt
+
+## Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+
+## Eclipse
+.metadata
+.classpath
+.project
+.settings/
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.loadpath

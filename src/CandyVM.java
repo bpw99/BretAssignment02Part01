@@ -1,3 +1,4 @@
+
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -50,7 +51,7 @@ public class CandyVM implements ICandyVendingMachine {
 	}
 	@Override
 	public String GetMachineInfo() {
-		return "This is a Candy vending machine";
+		return "(1) This is a Candy vending machine";
 	}
 	@Override
 	public String DisplayContents() {

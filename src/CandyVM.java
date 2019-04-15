@@ -24,17 +24,17 @@ public class CandyVM implements IVendingMachine<Candy> {
 	}
 	// -----
 
-	public void TakeMoney(double amount) {
+	public void takeMoney(double amount) {
 		money += amount;	
 	}
 
 	public double getMoney() { return(money); }
 
-	public void ReturnMoney(double amount) {
+	public void returnMoney(double amount) {
 		System.out.println("Here is the money you have left $" + (money - amount) +"\n");
 	}
 
-	public Candy VendItem(String slotCode) {
+	public Candy vendItem(String slotCode) {
 		if(slotCode.equals("1")) {
 			return slot1.poll();
 		}
@@ -49,11 +49,11 @@ public class CandyVM implements IVendingMachine<Candy> {
 		}
 	}
 	@Override
-	public String GetMachineInfo() {
+	public String getMachineInfo() {
 		return "(1) This is a Candy vending machine";
 	}
 	@Override
-	public String DisplayContents() {
+	public String displayContents() {
 		String out = "";
 		out += "Slot (1): " + slot1.peek().getName() + " - " + "$" + slot1.peek().getPrice() + " (" + slot1.size() + ")"+ "\n";
 		out += "Slot (2): " + slot2.peek().getName() + " - " + "$" + slot2.peek().getPrice() + " (" + slot2.size() + ")"+ "\n";

@@ -49,11 +49,11 @@ public class SodaVM implements IVendingMachine<Soda> {
 		}
 	}
 	@Override
-	public String GetMachineInfo() {
+	public String getMachineInfo() {
 		return "(2) This is a Soda vending machine";
 	}
 	@Override
-	public String DisplayContents() {
+	public String displayContents() {
 		String out = "";
 		out += "Slot (1): " + slot1.peek().getName() + " - " + "$" + slot1.peek().getPrice() + " (" + slot1.size() + ")"+ "\n";
 		out += "Slot (2): " + slot2.peek().getName() + " - " + "$" + slot2.peek().getPrice() + " (" + slot2.size() + ")"+ "\n";

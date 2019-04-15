@@ -5,7 +5,7 @@
  * @version 1.0
  * @since 2019-04-14
  */
-public class Soda implements Vendable, Cloneable {
+public class Soda extends VendableItem {
 
 	private String name;
 	private Double price;

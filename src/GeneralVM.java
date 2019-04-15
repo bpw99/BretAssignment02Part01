@@ -9,17 +9,18 @@
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class GeneralVM<T extends Vendable & Cloneable> implements IVendingMachine<T>, Cloneable {
+public class GeneralVM<T extends Cloneable & Vendable> implements IVendingMachine<T>, Cloneable {
 
 	// Item Slots
 	private Queue<T> slot1 = new LinkedList<T>();
 	private Queue<T> slot2 = new LinkedList<T>();
 	private Queue<T> slot3 = new LinkedList<T>();
 
-	private double money = 0;
+	private Double money;
+	private String vendingType;
 
 	// Constructors
-	public GeneralVM() { }
+	public GeneralVM() { money = 0.0; vendingType = ""; }
 	
 	public GeneralVM(T a, Integer b, T c, Integer d, T e, Integer f) {
 		for(; b > 0; b -= 1) {
@@ -32,23 +33,25 @@ public class GeneralVM<T extends Vendable & Cloneable> implements IVendingMachin
 			slot3.add(e.clone());
 		}
 	}
-	public GeneralVM(Queue<T> slot1, Queue<T> slot2, Queue<T> slot3, double money) {
+	public GeneralVM(Queue<T> slot1, Queue<T> slot2, Queue<T> slot3, Double money, String vendingType) {
 		this.slot1 = slot1;
 		this.slot2 = slot2;
 		this.slot3 = slot3;
 		this.money = money;
+		this.vendingType = vendingType;
 	}
 	// -----
 
 	// Money Methods
-	public void takeMoney(double amount) { money += amount; }
-	public double getMoney() { return money; }
+	protected double getMoney() { return money; }
+	public void takeMoney(double amount) {
+		money += amount;
+	}
 	public void returnMoney(double amount) {
-		System.out.println("Here is the money you have left $" + (money-amount) +"\n");
+		System.out.println("Here is the money you have left $" + (money - amount) +"\n");
 	}
 	// ---
 
-	//
 	public T vendItem(String slotCode) {
 		if (slotCode.equals("1")) {
 			return slot1.poll();
@@ -61,35 +64,21 @@ public class GeneralVM<T extends Vendable & Cloneable> implements IVendingMachin
 		}
 	}
 
-	public String getMachineInfo() {
-		return "(2) This is a Soda vending machine";
-	}
-	public String displayContents() {
-		String out = "";
-		out += "Slot (1): " + slot1.peek().getName() + " - " + "$" + slot1.peek().getPrice() + " (" + slot1.size() + ")"+ "\n";
-		out += "Slot (2): " + slot2.peek().getName() + " - " + "$" + slot2.peek().getPrice() + " (" + slot2.size() + ")"+ "\n";
-		out += "Slot (3): " + slot3.peek().getName() + " - " + "$" + slot3.peek().getPrice() + " (" + slot3.size() + ")";
-		return out;
-	}
-	
 	public T vend(int slotCode) {
 		switch (slotCode) {
 		case 1:
 			if (money >= slot1.peek().getPrice()) {
 				money -= slot1.peek().getPrice();
 				return slot1.poll();
-			}
-			else {
+			} else {
 				System.out.println("ERROR NOT ENOUGH MONEY");
 			}
 			break;
-		
 		case 2:
 			if (money >= slot2.peek().getPrice()) {
 				money -= slot2.peek().getPrice();
 				return slot2.poll();
-			}
-			else {
+			} else {
 				System.out.println("ERROR NOT ENOUGH MONEY");
 			}
 			break;
@@ -97,8 +86,7 @@ public class GeneralVM<T extends Vendable & Cloneable> implements IVendingMachin
 			if (money >= slot3.peek().getPrice()) {
 				money -= slot3.peek().getPrice();
 				return slot3.poll();
-			}
-			else {
+			} else {
 				System.out.println("ERROR NOT ENOUGH MONEY");
 			}
 			break;
@@ -108,7 +96,19 @@ public class GeneralVM<T extends Vendable & Cloneable> implements IVendingMachin
 		}
 		return null;
 	}
+	// Vending Machine Methods
+	public String getMachineInfo() {
+		return "This is a "+vendingType+" vending machine";
+	}
+	public String displayContents() {
+		String out = "";
+		out += "Slot (1): " + slot1.peek().getName() + " - " + "$" + slot1.peek().getPrice() + " (" + slot1.size() + ")"+ "\n";
+		out += "Slot (2): " + slot2.peek().getName() + " - " + "$" + slot2.peek().getPrice() + " (" + slot2.size() + ")"+ "\n";
+		out += "Slot (3): " + slot3.peek().getName() + " - " + "$" + slot3.peek().getPrice() + " (" + slot3.size() + ")";
+		return out;
+	}
+
 	public GeneralVM<T> clone() {
-		return new GeneralVM<T>(this.slot1, this.slot2, this.slot3, this.money);
+		return new GeneralVM<T>(this.slot1, this.slot2, this.slot3, this.money, this.vendingType);
 	}
 }

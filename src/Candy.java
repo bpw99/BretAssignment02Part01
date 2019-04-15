@@ -1,4 +1,4 @@
-public class Candy implements ICandyVendingMachine, Cloneable {
+public class Candy implements IVendingMachine, Cloneable {
 	
 	String name;
 	double price;
@@ -40,7 +40,7 @@ public class Candy implements ICandyVendingMachine, Cloneable {
 	}
 
 	@Override
-	public Object VendItem(String slotCode) {
+	public Generic VendItem(String slotCode) {
 		
 		return null;
 	}

@@ -1,7 +1,7 @@
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class SodaVM implements ISodaVendingMachine {
+public class SodaVM implements IVendingMachine {
 	Queue<Soda> slot1 = new LinkedList<Soda>();
 	Queue<Soda> slot2 = new LinkedList<Soda>();
 	Queue<Soda> slot3 = new LinkedList<Soda>();

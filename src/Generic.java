@@ -1,15 +1,15 @@
 
-public class Soda implements IVendingMachine, Cloneable
+public class Generic<E> implements IVendingMachine 
 {
 	String name;
 	double price;
 	
-	public Soda()
+	public Generic()
 	{
 		
 	}
 	
-	public Soda(String name, double price)
+	public Generic(String name, double price)
 	{
 		setName(name);
 		setPrice(price);
@@ -45,7 +45,7 @@ public class Soda implements IVendingMachine, Cloneable
 	}
 
 	@Override
-	public Soda VendItem(String slotCode) {
+	public Generic<E> VendItem(String slotCode) {
 		
 		return null;
 	}
@@ -61,11 +61,10 @@ public class Soda implements IVendingMachine, Cloneable
 		
 		return null;
 	}
-	public Soda clone()
+	public Generic<E> clone()
 	{
-		return new Soda(this.name,this.price);
+		return new Generic<E>(this.name,this.price);
 	}
 
-	
 
 }

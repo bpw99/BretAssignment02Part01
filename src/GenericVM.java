@@ -1,61 +1,40 @@
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class GeneralVM<E extends IVendingMachine<E>> implements IVendingMachine<E>, Cloneable
+public class GenericVM<E extends IVendingMachine> implements IVendingMachine<E>, Cloneable 
 
 {
 
-	String name;
-	double price;
+
 	Queue<E> slot1 = new LinkedList<E>();
 	Queue<E> slot2 = new LinkedList<E>();
 	Queue<E> slot3 = new LinkedList<E>();
 	
 	
-	public GeneralVM()
+	public GenericVM()
 	{
 		
 	}
 	
-	public GeneralVM(String name, double price)
-	{
-		setName(name);
-		setPrice(price);
-	}
-	public void setName(String nameIN)
-	{
-		name = nameIN;
-	}
 	
-	public String getName()
-	{
-		return name;
-	}
 	
-	public void setPrice(double priceIN)
-	{
-		price = priceIN;
-	}
-	
-	public double getPrice()
-	{
-		return price;
-	}
-
 	
 	double money = 0;
+
 	
 	
 	
-	public GeneralVM(E a, int b, E c, int d, E e, int f) {
+	public GenericVM(Generic a, int b, Generic c, int d, Generic e, int f)
+	{
+		
 		for(; b > 0; b -= 1) {
-			slot1.add(a.clone());
+			slot1.add((E) a.clone());
 		}
 		for(;d > 0; d -= 1) {
-			slot2.add(c.clone());
+			slot2.add((E) c.clone());
 		}
 		for(;f > 0; f -= 1) {
-			slot3.add(e.clone());
+			slot3.add((E) e.clone());
 		}
 	}
 	
@@ -92,17 +71,17 @@ public class GeneralVM<E extends IVendingMachine<E>> implements IVendingMachine<
 	@Override
 	public String DisplayContents() {
 		String out = "";
-		out += "Slot (1): " + slot1.peek().getName() + " - " + "$" + slot1.peek().getPrice() + " (" + slot1.size() + ")"+ "\n";
-		out += "Slot (2): " + slot2.peek().getName() + " - " + "$" + slot2.peek().getPrice() + " (" + slot2.size() + ")"+ "\n";
-		out += "Slot (3): " + slot3.peek().getName() + " - " + "$" + slot3.peek().getPrice() + " (" + slot3.size() + ")";
+		out += "Slot (1): " + ((Generic) slot1.peek()).getName() + " - " + "$" + ((Generic) slot1.peek()).getPrice() + " (" + slot1.size() + ")"+ "\n";
+		out += "Slot (2): " + ((Generic) slot2.peek()).getName() + " - " + "$" + ((Generic) slot2.peek()).getPrice() + " (" + slot2.size() + ")"+ "\n";
+		out += "Slot (3): " + ((Generic) slot3.peek()).getName() + " - " + "$" + ((Generic) slot3.peek()).getPrice() + " (" + slot3.size() + ")";
 		return out;
 	}
 	
 	public E vend(int slotCode) {
 		switch (slotCode) {
 		case 1:
-			if(money >= slot1.peek().getPrice()) {
-				money -= slot1.peek().getPrice();
+			if(money >= ( (Generic) slot1.peek()).getPrice()) {
+				money -= ( (Generic) slot1.peek()).getPrice();
 				return slot1.poll();
 			}
 			else {
@@ -111,8 +90,8 @@ public class GeneralVM<E extends IVendingMachine<E>> implements IVendingMachine<
 			break;
 		
 		case 2:
-			if(money >= slot2.peek().getPrice()) {
-				money -= slot2.peek().getPrice();
+			if(money >= ((Generic) slot2.peek()).getPrice()) {
+				money -= ((Generic) slot2.peek()).getPrice();
 				return slot2.poll();
 			}
 			else {
@@ -120,8 +99,8 @@ public class GeneralVM<E extends IVendingMachine<E>> implements IVendingMachine<
 			}
 			break;
 		case 3:
-			if(money >= slot3.peek().getPrice()) {
-				money -= slot3.peek().getPrice();
+			if(money >= ((Generic) slot3.peek()).getPrice()) {
+				money -= ((Generic) slot3.peek()).getPrice();
 				return slot3.poll();
 			}
 			else {
@@ -134,10 +113,7 @@ public class GeneralVM<E extends IVendingMachine<E>> implements IVendingMachine<
 		}
 		return null;
 	}
-	public GeneralVM<E> clone()
-	{
-		return new GeneralVM<E>(this.name,this.price);
-	}
+
 
 	
 }

@@ -9,12 +9,12 @@
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class GeneralVM<T extends Cloneable & Vendable> implements IVendingMachine<T>, Cloneable {
+public class GeneralVM implements IVendingMachine<VendableItem>, Cloneable {
 
 	// Item Slots
-	private Queue<T> slot1 = new LinkedList<T>();
-	private Queue<T> slot2 = new LinkedList<T>();
-	private Queue<T> slot3 = new LinkedList<T>();
+	private Queue<VendableItem> slot1 = new LinkedList<VendableItem>();
+	private Queue<VendableItem> slot2 = new LinkedList<VendableItem>();
+	private Queue<VendableItem> slot3 = new LinkedList<VendableItem>();
 
 	private Double money;
 	private String vendingType;
@@ -22,7 +22,8 @@ public class GeneralVM<T extends Cloneable & Vendable> implements IVendingMachin
 	// Constructors
 	public GeneralVM() { money = 0.0; vendingType = ""; }
 	
-	public GeneralVM(T a, Integer b, T c, Integer d, T e, Integer f) {
+	public GeneralVM(VendableItem a, Integer b, VendableItem c, Integer d, VendableItem e, Integer f) {
+		vendingType = a.getClass().getSimpleName();
 		for(; b > 0; b -= 1) {
 			slot1.add(a.clone());
 		}
@@ -33,7 +34,7 @@ public class GeneralVM<T extends Cloneable & Vendable> implements IVendingMachin
 			slot3.add(e.clone());
 		}
 	}
-	public GeneralVM(Queue<T> slot1, Queue<T> slot2, Queue<T> slot3, Double money, String vendingType) {
+	public GeneralVM(Queue<VendableItem> slot1, Queue<VendableItem> slot2, Queue<VendableItem> slot3, Double money, String vendingType) {
 		this.slot1 = slot1;
 		this.slot2 = slot2;
 		this.slot3 = slot3;
@@ -52,7 +53,7 @@ public class GeneralVM<T extends Cloneable & Vendable> implements IVendingMachin
 	}
 	// ---
 
-	public T vendItem(String slotCode) {
+	public VendableItem vendItem(String slotCode) {
 		if (slotCode.equals("1")) {
 			return slot1.poll();
 		} else if (slotCode.equals("2")) {
@@ -64,7 +65,7 @@ public class GeneralVM<T extends Cloneable & Vendable> implements IVendingMachin
 		}
 	}
 
-	public T vend(int slotCode) {
+	public VendableItem vend(int slotCode) {
 		switch (slotCode) {
 		case 1:
 			if (money >= slot1.peek().getPrice()) {
@@ -108,7 +109,7 @@ public class GeneralVM<T extends Cloneable & Vendable> implements IVendingMachin
 		return out;
 	}
 
-	public GeneralVM<T> clone() {
-		return new GeneralVM<T>(this.slot1, this.slot2, this.slot3, this.money, this.vendingType);
+	public GeneralVM clone() {
+		return new GeneralVM(this.slot1, this.slot2, this.slot3, this.money, this.vendingType);
 	}
 }

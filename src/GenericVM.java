@@ -1,5 +1,5 @@
 /**
- * GeneralVM (Vending Machine) Class
+ * GenericVM (Vending Machine) Class
  * This class is the generic Vending Maching for Vendable Items.
  * 
  * @author Bret Wilson
@@ -9,7 +9,7 @@
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class GeneralVM implements IVendingMachine<VendableItem>, Cloneable {
+public class GenericVM implements IVendingMachine<VendableItem>, Cloneable {
 
 	// Item Slots
 	private Queue<VendableItem> slot1 = new LinkedList<VendableItem>();
@@ -20,9 +20,9 @@ public class GeneralVM implements IVendingMachine<VendableItem>, Cloneable {
 	private String vendingType;
 
 	// Constructors
-	public GeneralVM() { money = 0.0; vendingType = ""; }
+	public GenericVM() { money = 0.0; vendingType = ""; }
 	
-	public GeneralVM(VendableItem a, Integer b, VendableItem c, Integer d, VendableItem e, Integer f) {
+	public GenericVM(VendableItem a, Integer b, VendableItem c, Integer d, VendableItem e, Integer f) {
 		vendingType = a.getClass().getSimpleName();
 		for(; b > 0; b -= 1) {
 			slot1.add(a.clone());
@@ -34,7 +34,7 @@ public class GeneralVM implements IVendingMachine<VendableItem>, Cloneable {
 			slot3.add(e.clone());
 		}
 	}
-	public GeneralVM(Queue<VendableItem> slot1, Queue<VendableItem> slot2, Queue<VendableItem> slot3, Double money, String vendingType) {
+	public GenericVM(Queue<VendableItem> slot1, Queue<VendableItem> slot2, Queue<VendableItem> slot3, Double money, String vendingType) {
 		this.slot1 = slot1;
 		this.slot2 = slot2;
 		this.slot3 = slot3;
@@ -109,7 +109,7 @@ public class GeneralVM implements IVendingMachine<VendableItem>, Cloneable {
 		return out;
 	}
 
-	public GeneralVM clone() {
-		return new GeneralVM(this.slot1, this.slot2, this.slot3, this.money, this.vendingType);
+	public GenericVM clone() {
+		return new GenericVM(this.slot1, this.slot2, this.slot3, this.money, this.vendingType);
 	}
 }

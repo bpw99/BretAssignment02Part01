@@ -1,24 +1,25 @@
+/**
+ * GeneralVM (Vending Machine) Class
+ * This class is the generic Vending Maching for Vendable Items.
+ * 
+ * @author Bret Wilson
+ * @version 0.2
+ * @since 2019-04-01
+ */
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class GeneralVM<E extends IVendingMachine<E>> implements IVendingMachine<E>, Cloneable
+public class GeneralVM<E extends IVendingMachine<E>> implements IVendingMachine<E>, Cloneable {
 
-{
+	private String name;
+	private double price;
+	private Queue<E> slot1 = new LinkedList<E>();
+	private Queue<E> slot2 = new LinkedList<E>();
+	private Queue<E> slot3 = new LinkedList<E>();
 
-	String name;
-	double price;
-	Queue<E> slot1 = new LinkedList<E>();
-	Queue<E> slot2 = new LinkedList<E>();
-	Queue<E> slot3 = new LinkedList<E>();
+	public GeneralVM() { this("",0.0); }
 	
-	
-	public GeneralVM()
-	{
-		
-	}
-	
-	public GeneralVM(String name, double price)
-	{
+	public GeneralVM(String name, double price) {
 		setName(name);
 		setPrice(price);
 	}

@@ -14,12 +14,20 @@ public class VendingMachine {
 
 		// Scans for User Input
 		Scanner scan = new Scanner(System.in);
-
-		boolean doQuit = false;
-		while (!doQuit) {
-			// Displays Contents and Input Options
+		System.out.println(VendingMachine.DisplayContents());
+		System.out.println("Enter money or Q to quit");
+		
+		boolean quit = false;
+		while (true) {
+			
+			
+			if(VendingMachine.getMoney() <= 1)
+			{
 			System.out.println(VendingMachine.DisplayContents());
 			System.out.println("Enter money or Q to quit");
+			}
+			
+			while (true) {
 
 			while (true) {
 				if (!scan.hasNextDouble()) {

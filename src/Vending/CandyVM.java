@@ -1,40 +1,44 @@
-
 import java.util.LinkedList;
 import java.util.Queue;
 
 public class CandyVM implements ICandyVendingMachine {
+    //creates Queue that holds 3 seperate slots//
 	Queue<Candy> slot1 = new LinkedList<Candy>();
 	Queue<Candy> slot2 = new LinkedList<Candy>();
 	Queue<Candy> slot3 = new LinkedList<Candy>();
-
-	private	double money = 0;
-
-	// Constructor
+	
+	double money = 0;
+	
 	public CandyVM() { }
-
+	
 	public CandyVM(Candy a, int b, Candy c, int d, Candy e, int f) {
-		for (; b > 0; b -= 1) {
+		for(; b > 0; b -= 1) {
 			slot1.add(a.clone());
 		}
-		for (;d > 0; d -= 1) {
+		for(;d > 0; d -= 1) {
 			slot2.add(c.clone());
 		}
-		for (;f > 0; f -= 1) {
+		for(;f > 0; f -= 1) {
 			slot3.add(e.clone());
 		}
 	}
-	// -----
-
+	
+	//gives the total amount of money put into the vending machine//
+        @Override
 	public void TakeMoney(double amount) {
 		money += amount;	
 	}
-
-	public double getMoney() { return(money); }
-
-	public void ReturnMoney(double amount) {
-		System.out.println("Here is the money you have left $" + (money - amount) +"\n");
+        //returns money//
+	public double getMoney() {
+		return money;
 	}
-
+	//prints out users remaining money after a purchase//
+        @Override
+	public void ReturnMoney(double amount) {
+		System.out.println("Here is the money you have left $" + (money-amount) +"\n");
+	}
+        //checks user input for 1, 2, or 3 and returns slot in that place//
+	@Override
 	public Candy VendItem(String slotCode) {
 		if(slotCode.equals("1")) {
 			return slot1.poll();
@@ -49,16 +53,13 @@ public class CandyVM implements ICandyVendingMachine {
 			return null;
 		}
 	}
-<<<<<<< HEAD
-	public String GetMachineInfo() { return("This is a Candy vending machine"); }
-
-=======
+        //returns type of vending machine//
 	@Override
 	public String GetMachineInfo() {
-		return "(1) This is a Candy vending machine";
+		return "This is a Candy vending machine";
 	}
+        //displays candy in vending machine along with price and amounts//
 	@Override
->>>>>>> master
 	public String DisplayContents() {
 		String out = "";
 		out += "Slot (1): " + slot1.peek().getName() + " - " + "$" + slot1.peek().getPrice() + " (" + slot1.size() + ")"+ "\n";
@@ -66,7 +67,7 @@ public class CandyVM implements ICandyVendingMachine {
 		out += "Slot (3): " + slot3.peek().getName() + " - " + "$" + slot3.peek().getPrice() + " (" + slot3.size() + ")";
 		return out;
 	}
-
+	
 	public Candy vend(int slotCode) {
 		switch (slotCode) {
 		case 1:

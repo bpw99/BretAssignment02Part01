@@ -1,7 +1,7 @@
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class CandyVM implements ICandyVendingMachine {
+public class CandyVM implements IVendingMachine<Candy> {
 	Queue<Candy> slot1 = new LinkedList<Candy>();
 	Queue<Candy> slot2 = new LinkedList<Candy>();
 	Queue<Candy> slot3 = new LinkedList<Candy>();

@@ -1,34 +1,33 @@
-public class Candy implements ICandyVendingMachine, Cloneable {
+/**
+ * Candy Class
+ * 
+ * @author Bret Wilson
+ * @version 1.0
+ * @since 2019-04-14
+ */
+public class Candy implements Vendable, Cloneable {
 
-	private double price;
-	public double getPrice() { return(price); }
-	public void setPrice(double price) { this.price = price; }
-	
 	private String name;
-	public String getName() { return(name); }
-	public void setName(String name) { this.name = name; }
+	private Double price;
+
+	// Constructors
+	public Candy() { this("", 0.0); }
 	
-	// Constructor
-	public Candy() {}
-	
-	public Candy(String n, double p) {
-		price = p;
-		name = n;
+	public Candy(String name, Double price) {
+		setName(name);
+		setPrice(price);
 	}
 	// -----
+	// Name Methods
+	public void setName(String name) { this.name = name; }
+	public String getName() { return name; }
 
-	// Instance 
-	public void TakeMoney(double amount) { }
+	// Price Methods
+	public void setPrice(Double price) { this.price = price; }
+	public Double getPrice() { return price; }
+	// ---
 
-	public void ReturnMoney(double amount) { }
-
-	public Candy VendItem(String slotCode) { return(null); }
-
-	public String GetMachineInfo() { return(null); }
-
-	public String DisplayContents() { return(null); }
-	
 	public Candy clone() {
-		return new Candy(this.name,this.price);
+		return new Candy(this.name, this.price);
 	}
 }

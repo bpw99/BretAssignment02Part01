@@ -1,71 +1,33 @@
+/**
+ * Soda Class
+ * 
+ * @author Bret Wilson
+ * @version 1.0
+ * @since 2019-04-14
+ */
+public class Soda implements Vendable, Cloneable {
 
-public class Soda implements ISodaVendingMachine, Cloneable
-{
-	String name;
-	double price;
+	private String name;
+	private Double price;
+
+	// Constructors
+	public Soda() { this("", 0.0); }
 	
-	public Soda()
-	{
-		
-	}
-	
-	public Soda(String name, double price)
-	{
+	public Soda(String name, Double price) {
 		setName(name);
 		setPrice(price);
 	}
-	public void setName(String nameIN)
-	{
-		name = nameIN;
-	}
-	
-	public String getName()
-	{
-		return name;
-	}
-	
-	public void setPrice(double priceIN)
-	{
-		price = priceIN;
-	}
-	
-	public double getPrice()
-	{
-		return price;
-	}
+	// -----
+	// Name Methods
+	public void setName(String name) { this.name = name; }
+	public String getName() { return name; }
 
-	@Override
-	public void TakeMoney(double amount) {
-		
-	}
+	// Price Methods
+	public void setPrice(Double price) { this.price = price; }
+	public Double getPrice() { return price; }
+	// ---
 
-	@Override
-	public void ReturnMoney(double amount) {
-		
+	public Soda clone() {
+		return new Soda(this.name, this.price);
 	}
-
-	@Override
-	public Soda VendItem(String slotCode) {
-		
-		return null;
-	}
-
-	@Override
-	public String GetMachineInfo() {
-		
-		return null;
-	}
-
-	@Override
-	public String DisplayContents() {
-		
-		return null;
-	}
-	public Soda clone()
-	{
-		return new Soda(this.name,this.price);
-	}
-
-	
-
 }

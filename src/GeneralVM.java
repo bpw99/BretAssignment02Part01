@@ -9,46 +9,19 @@
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class GeneralVM<E extends IVendingMachine<E>> implements IVendingMachine<E>, Cloneable {
+public class GeneralVM<T extends Vendable & Cloneable> implements IVendingMachine<T>, Cloneable {
 
-	private String name;
-	private double price;
-	private Queue<E> slot1 = new LinkedList<E>();
-	private Queue<E> slot2 = new LinkedList<E>();
-	private Queue<E> slot3 = new LinkedList<E>();
+	// Item Slots
+	private Queue<T> slot1 = new LinkedList<T>();
+	private Queue<T> slot2 = new LinkedList<T>();
+	private Queue<T> slot3 = new LinkedList<T>();
 
-	public GeneralVM() { this("",0.0); }
-	
-	public GeneralVM(String name, double price) {
-		setName(name);
-		setPrice(price);
-	}
-	public void setName(String nameIN)
-	{
-		name = nameIN;
-	}
-	
-	public String getName()
-	{
-		return name;
-	}
-	
-	public void setPrice(double priceIN)
-	{
-		price = priceIN;
-	}
-	
-	public double getPrice()
-	{
-		return price;
-	}
+	private double money = 0;
 
+	// Constructors
+	public GeneralVM() { }
 	
-	double money = 0;
-	
-	
-	
-	public GeneralVM(E a, int b, E c, int d, E e, int f) {
+	public GeneralVM(T a, Integer b, T c, Integer d, T e, Integer f) {
 		for(; b > 0; b -= 1) {
 			slot1.add(a.clone());
 		}
@@ -59,39 +32,39 @@ public class GeneralVM<E extends IVendingMachine<E>> implements IVendingMachine<
 			slot3.add(e.clone());
 		}
 	}
-	
-	@Override
-	public void TakeMoney(double amount) {
-		money += amount;	
+	public GeneralVM(Queue<T> slot1, Queue<T> slot2, Queue<T> slot3, double money) {
+		this.slot1 = slot1;
+		this.slot2 = slot2;
+		this.slot3 = slot3;
+		this.money = money;
 	}
-	public double getMoney() {
-		return money;
-	}
-	@Override
-	public void ReturnMoney(double amount) {
+	// -----
+
+	// Money Methods
+	public void takeMoney(double amount) { money += amount; }
+	public double getMoney() { return money; }
+	public void returnMoney(double amount) {
 		System.out.println("Here is the money you have left $" + (money-amount) +"\n");
 	}
-	@Override
-	public E VendItem(String slotCode) {
-		if(slotCode.equals("1")) {
+	// ---
+
+	//
+	public T vendItem(String slotCode) {
+		if (slotCode.equals("1")) {
 			return slot1.poll();
-		}
-		else if(slotCode.equals("2")) {
+		} else if (slotCode.equals("2")) {
 			return slot2.poll();
-		}
-		else if(slotCode.equals("3")) {
+		} else if (slotCode.equals("3")) {
 			return slot3.poll();
-		}
-		else {
+		} else {
 			return null;
 		}
 	}
-	@Override
-	public String GetMachineInfo() {
+
+	public String getMachineInfo() {
 		return "(2) This is a Soda vending machine";
 	}
-	@Override
-	public String DisplayContents() {
+	public String displayContents() {
 		String out = "";
 		out += "Slot (1): " + slot1.peek().getName() + " - " + "$" + slot1.peek().getPrice() + " (" + slot1.size() + ")"+ "\n";
 		out += "Slot (2): " + slot2.peek().getName() + " - " + "$" + slot2.peek().getPrice() + " (" + slot2.size() + ")"+ "\n";
@@ -99,10 +72,10 @@ public class GeneralVM<E extends IVendingMachine<E>> implements IVendingMachine<
 		return out;
 	}
 	
-	public E vend(int slotCode) {
+	public T vend(int slotCode) {
 		switch (slotCode) {
 		case 1:
-			if(money >= slot1.peek().getPrice()) {
+			if (money >= slot1.peek().getPrice()) {
 				money -= slot1.peek().getPrice();
 				return slot1.poll();
 			}
@@ -112,7 +85,7 @@ public class GeneralVM<E extends IVendingMachine<E>> implements IVendingMachine<
 			break;
 		
 		case 2:
-			if(money >= slot2.peek().getPrice()) {
+			if (money >= slot2.peek().getPrice()) {
 				money -= slot2.peek().getPrice();
 				return slot2.poll();
 			}
@@ -121,7 +94,7 @@ public class GeneralVM<E extends IVendingMachine<E>> implements IVendingMachine<
 			}
 			break;
 		case 3:
-			if(money >= slot3.peek().getPrice()) {
+			if (money >= slot3.peek().getPrice()) {
 				money -= slot3.peek().getPrice();
 				return slot3.poll();
 			}
@@ -135,10 +108,7 @@ public class GeneralVM<E extends IVendingMachine<E>> implements IVendingMachine<
 		}
 		return null;
 	}
-	public GeneralVM<E> clone()
-	{
-		return new GeneralVM<E>(this.name,this.price);
+	public GeneralVM<T> clone() {
+		return new GeneralVM<T>(this.slot1, this.slot2, this.slot3, this.money);
 	}
-
-	
 }

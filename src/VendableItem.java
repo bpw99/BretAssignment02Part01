@@ -1,10 +1,4 @@
-/**
- * VendableItem Class
- * 
- * @author Lex vB
- * @version 1.0
- * @since 2019-04-15
- */
+
 public class VendableItem implements Cloneable {
   private String name;
   private Double price;

@@ -9,12 +9,18 @@
 import java.util.Scanner;
 
 public class Vending {
-	public static void main(String[] args) {
+	
+
+	public static void main(String[] args) 
+	{
+		double net = 0;
+		double net2 = 0;
+		double net3 = 0;
 		
-		double in = 0;
-		double amount2 = 0;
-		double amount = 0;
 		Candy candy = new Candy();
+		Soda soda = new Soda();
+		VendableItem general = new VendableItem();
+		
 		Candy twix = new Candy("Twix", 1.00);
 		Candy skittles = new Candy("Skittles", 1.20);
 		Candy largeGumball = new Candy("Gum", 1.00);
@@ -22,137 +28,139 @@ public class Vending {
 		Soda dew = new Soda("Mountain Dew", 1.25);
 		Soda root = new Soda("Root Beer", 1.25);
 		Soda bigRed = new Soda("Big Red", 1.50);
+		
+		VendableItem cola = new Soda("Cola", 1.00);
+		VendableItem gummy = new Candy("Gummy worms", 1.00);
+		VendableItem pepsi = new Soda("Pepsi", 1.00);
+		
 
-		CandyVM VendingMachine = new CandyVM(twix, 3, skittles, 2, largeGumball, 3);
-		SodaVM VendingMachine2 = new SodaVM(dew, 5, root, 5, bigRed, 3);
+		GenericVM VendingMachine = new GenericVM(twix, 3, skittles, 2, largeGumball, 3);
+		GenericVM VendingMachine2 = new GenericVM(dew, 5, root, 5, bigRed, 3);
+		GenericVM VendingMachine3 = new GenericVM(cola, 3, gummy, 3, pepsi, 3);
 
 		Scanner scan = new Scanner(System.in);
-		System.out.println(VendingMachine.getMachineInfo());
-		System.out.println(VendingMachine2.getMachineInfo());
-		System.out.println("Enter 1 for Candy, or 2 for Soda, or Q to quit");
-		
-		int in = scan.nextInt();
-		boolean quit = false;
-		while(!quit) {
-			if (in == 1) {
-		
 		
 		boolean quit = false;
 		
 		while(true)
 		{
-		
+			System.out.println("You have arrived at the vending machine \n type A to select a vending machine and put in money \n type B to pick the Candy vending machine \n type C to pick the Soda vending machine \n type D to pick the General vending machine \n or type Q to quit");
+			String input = scan.nextLine();
 			
-			System.out.println(VendingMachine.GetMachineInfo());
-			System.out.println(VendingMachine2.GetMachineInfo());
-			System.out.println("Enter 1 for Candy, or 2 for Soda, or Q to quit");
-			in = scan.nextDouble();
-			
-			while(in == 1)
+			if(input.equalsIgnoreCase("Q"))
 			{
-				System.out.println("You have selected the Candy vending machine" );
-				System.out.println(VendingMachine.displayContents());
-				System.out.println("pick a candy to purchase");
-				System.out.println("Enter Q to quit");
-				String num = scan.next();
-				if(num.equals("1")||num.equals("2")||num.equals("3"))
+				System.out.println("You have quit the Vending machine");
+				System.exit(0);
+			}
+			if(input.equalsIgnoreCase("A"))
+			{
+				System.out.println("Choose a vending machine to put money into? \n 1: Candy \n 2: Soda \n 3: General");
+				String in = scan.nextLine();
+				if(in.equals("1"))
 				{
-					while(amount - candy.getPrice() > 0)
-					{
+					System.out.println("You have selected the Candy vending machine \n put money into the machine");
+					VendingMachine.takeMoney(scan.nextDouble());
+					System.out.println("here is your money " + net);
 					
+				}
+				else if(in.equals("2"))
+				{
+					System.out.println("You have selected the Soda vending machine \n put money into the machine");
+					VendingMachine2.takeMoney(scan.nextDouble());
+					System.out.println("You have $" + VendingMachine2.getMoney());
 					
-					System.out.println("enter money to purchase item");
-					System.out.println("Enter Q to quit");
-					amount = scan.nextDouble();
-					VendingMachine.TakeMoney(amount);
-					candy = VendingMachine.VendItem(num);
-					}
-					System.out.println("You have $" + VendingMachine.getMoney() + "remaining");
-					
-					while(amount + amount2 < candy.getPrice())
+				}
+				else if(in.equals("3"))
+				{
+					System.out.println("You have selected the General vending machine \n put money into the machine");
+					VendingMachine3.takeMoney(scan.nextDouble());
+					System.out.println("You have $" + VendingMachine3.getMoney());
+				}
+				else
+				{
+					System.out.println("you must select 1, 2, or 3 please");
+				}
 				
-					{
-						System.out.println("enter more money to purchase item");
-						System.out.println("Enter Q to quit");
-
-						amount2 = scan.nextDouble();
-						VendingMachine.TakeMoney(amount2 + amount);
-						VendingMachine.VendItem(num);
-						
-					}
+			}
+			else if(input.equalsIgnoreCase("B"))
+			{
+				System.out.println("Enter a candy you would like to purchase \n" + VendingMachine.displayContents());
+				String choice = scan.nextLine();
+				candy = (Candy) VendingMachine.vendItem(choice.toUpperCase());
+				net += VendingMachine.getMoney() - candy.getPrice();
+				if(net < 0)
+				{
+					System.out.println("You don't have enough money for that");
+					System.exit(0);
+				}
+					
+				if(candy != null)
+				{
 					System.out.println("Here is your " + candy.getName());
-					VendingMachine.ReturnMoney(candy.getPrice());
-					System.out.println("Enter Q to quit");
-			
 				}
-			}
-			if(in == 2)
-			{
-				System.out.println("You have selected the Soda vending machine");
-				VendingMachine2.DisplayContents();
-				break;
-			}
-			if (in == 3) {
-				System.out.println("You have selected a general vending machine");
-				break;
-			}
-			if (!scan.hasNextInt()) {
-				String a = scan.next();
-				if(a.equalsIgnoreCase("q"));
-				{
-					System.out.println("you have quit the vending machine");
-					quit = true;
-					break;
 			
+			}
+			else if(input.equalsIgnoreCase("C"))
+			{
+				System.out.println("Enter a candy you would like to purchase \n" + VendingMachine2.displayContents());
+				String choice2 = scan.nextLine();
+				soda = (Soda) VendingMachine2.vendItem(choice2.toUpperCase());
+				net += VendingMachine.getMoney() - candy.getPrice();
+				if(net < 0)
+				{
+					System.out.println("You don't have enough money for that");
+					System.exit(0);
+				}
+				if(soda != null)
+				{
+					System.out.println("Here is your " + soda.getName());
 				}
 				
+			
+			}
+			else if(input.equalsIgnoreCase("D"))
+			{
+				System.out.println("Enter a candy you would like to purchase \n" + VendingMachine3.displayContents());
+				String choice3 = scan.nextLine();
+				general = VendingMachine3.vendItem(choice3.toUpperCase());
+				net += VendingMachine.getMoney() - candy.getPrice();
+				if(net < 0)
+				{
+					System.out.println("You don't have enough money for that");
+					System.exit(0);
+				}
+				if(general != null)
+				{
+					System.out.println("Here is your " + general.getName());
+				}
+				
+			
 			}
 			else
 			{
-				break;
+				System.out.println("Please enter A, B, C, D, or Q");
 			}
+			
+			
+			
+			System.out.println("Your Candy Machine balance is " + (VendingMachine.getMoney() - candy.getPrice()));
+			System.out.println("Your Soda Machine balance is " +  (VendingMachine2.getMoney() - soda.getPrice()));
+			System.out.println("Your General Machine balance is " + (VendingMachine3.getMoney() - general.getPrice()));
+			System.out.println();
+			
+		
+			
+			
+		
+			
+			
+			
 		}
-		scan.close();
+		
+		
 	}
+	
 }
-//		boolean quit = false;
-//		while (true) {
-//			if (VendingMachine.getMoney() <= 1) {
-//			System.out.println(VendingMachine.DisplayContents());
-//			System.out.println("Enter money or Q to quit");
-//			}
-//			while (true) {
-//				if (!scan.hasNextDouble()) {
-//					String a = scan.next();
-//					if (a.equalsIgnoreCase("q")) {
-//						quit = true;
-//						break;
-//					}else {
-//						System.out.println("Invalid input");
-//					}
-//				} else {
-//					break;
-//				}
-//			}
-//				if (quit == true) {
-//					break;
-//				}
-//				double amountIn = scan.nextDouble();
-//				VendingMachine.TakeMoney(amountIn);
-//				double money = VendingMachine.getMoney();
-//				if (money < 1) {
-//					System.out.println("You must put in 1 dollar or greater");
-//				} else { VendingMachine.ReturnMoney(0); }
-//				System.out.println("Enter the number for the candy you would like to purchase");
-//				String num = scan.next();
-//				if (num.equals("1")||num.equals("2")||num.equals("3")) {
-//					Candy candy = VendingMachine.VendItem((num));
-//					if (candy.getPrice() > amountIn) {
-//						System.out.println("You must put in money greater than what you are buying, enter a new amount");
-//					} else {
-//						System.out.println("Here is your " + candy.getName());
-//						VendingMachine.ReturnMoney(candy.getPrice());
-//					}
-//					System.out.println("Here is your " + candy.getName());
-//				}
-//			}
+		
+		
+		

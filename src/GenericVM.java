@@ -16,13 +16,13 @@ public class GenericVM implements IVendingMachine<VendableItem>, Cloneable {
 	private Queue<VendableItem> slot2 = new LinkedList<VendableItem>();
 	private Queue<VendableItem> slot3 = new LinkedList<VendableItem>();
 
-	private Double money;
+	private double money;
 	private String vendingType;
 
 	// Constructors
 	public GenericVM() { money = 0.0; vendingType = ""; }
 	
-	public GenericVM(VendableItem a, Integer b, VendableItem c, Integer d, VendableItem e, Integer f) {
+	public GenericVM(VendableItem a, int b, VendableItem c, int d, VendableItem e, int f) {
 		vendingType = a.getClass().getSimpleName();
 		for(; b > 0; b -= 1) {
 			slot1.add(a.clone());
@@ -34,7 +34,7 @@ public class GenericVM implements IVendingMachine<VendableItem>, Cloneable {
 			slot3.add(e.clone());
 		}
 	}
-	public GenericVM(Queue<VendableItem> slot1, Queue<VendableItem> slot2, Queue<VendableItem> slot3, Double money, String vendingType) {
+	public GenericVM(Queue<VendableItem> slot1, Queue<VendableItem> slot2, Queue<VendableItem> slot3, double money, String vendingType) {
 		this.slot1 = slot1;
 		this.slot2 = slot2;
 		this.slot3 = slot3;
@@ -44,12 +44,13 @@ public class GenericVM implements IVendingMachine<VendableItem>, Cloneable {
 	// -----
 
 	// Money Methods
-	protected double getMoney() { return money; }
+	public double getMoney() { return money; }
+	
 	public void takeMoney(double amount) {
 		money += amount;
 	}
 	public void returnMoney(double amount) {
-		System.out.println("Here is the money you have left $" + (money - amount) +"\n");
+		System.out.println( "Here is the money you have left $" + (money - amount) +"\n");
 	}
 	// ---
 
@@ -65,9 +66,9 @@ public class GenericVM implements IVendingMachine<VendableItem>, Cloneable {
 		}
 	}
 
-	public VendableItem vend(int slotCode) {
+	public VendableItem vendItem1(String slotCode) {
 		switch (slotCode) {
-		case 1:
+		case "1":
 			if (money >= slot1.peek().getPrice()) {
 				money -= slot1.peek().getPrice();
 				return slot1.poll();
@@ -75,7 +76,7 @@ public class GenericVM implements IVendingMachine<VendableItem>, Cloneable {
 				System.out.println("ERROR NOT ENOUGH MONEY");
 			}
 			break;
-		case 2:
+		case "2":
 			if (money >= slot2.peek().getPrice()) {
 				money -= slot2.peek().getPrice();
 				return slot2.poll();
@@ -83,7 +84,7 @@ public class GenericVM implements IVendingMachine<VendableItem>, Cloneable {
 				System.out.println("ERROR NOT ENOUGH MONEY");
 			}
 			break;
-		case 3:
+		case "3":
 			if (money >= slot3.peek().getPrice()) {
 				money -= slot3.peek().getPrice();
 				return slot3.poll();
